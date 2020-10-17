@@ -93,7 +93,8 @@ public class Main {
                     }
                     break;
                 case 6:
-                    double chuyen, nhan, tienChuyen;
+                    double chuyen, nhan, tienChuyen, kq;
+                    double phi = 2200;
                     System.out.print("Nhập số tài khoản khách hàng chuyển tiền: ");
                     soTaiKhoanKH = sc.nextLong();
                     System.out.print("Nhập số tài khoản khách hàng nhận tiền: ");
@@ -109,15 +110,15 @@ public class Main {
                                     System.out.print("Mời bạn nhập số tiền cần chuyển: ");
                                     tienChuyen = sc.nextDouble();
                                     if (tienChuyen <= chuyen) {
-                                        chuyen = chuyen - tienChuyen;
+                                        chuyen = chuyen - tienChuyen -phi;
                                         nhan = nhan + tienChuyen;
                                         a[i].setTienTk(chuyen);
                                         a[j].setTienTk(nhan);
                                         Locale localeVN = new Locale("vi", "VN");
                                         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
-
                                         System.out.println(TaiKhoan.RED + "Tài khoản số " + account + " vừa chuyển: " + currencyVN.format(tienChuyen) + TaiKhoan.ANSI_RESET);
                                         System.out.println(TaiKhoan.RED + "Tài khoản số " + tKNhan + " vừa nhận: " + currencyVN.format(tienChuyen) + TaiKhoan.ANSI_RESET);
+                                        System.out.println(TaiKhoan.RED + "Số dư " + a[i].getTenTk() + " là: " + currencyVN.format(a[i].getTienTk()) + TaiKhoan.ANSI_RESET);
                                         System.out.println(TaiKhoan.RED + "Số dư " + a[j].getTenTk() + " là: " + currencyVN.format(a[j].getTienTk()) + TaiKhoan.ANSI_RESET);
                                     } else {
                                         System.out.println("Số tiền bạn muốn chuyển khô hợp lệ!");
@@ -137,7 +138,7 @@ public class Main {
                     for (int i = 0; i < n; i++){
                         account = a[i].getSoTk();
                         if(soTaiKhoanKH == account){
-                            System.out.println("Mời bạn chọn tài khoản trả nợ: "+account);
+                            System.out.println("Tài khoản thanh toán nợ: "+account);
                             a[i].daoHan();
                             break;
                         }else{

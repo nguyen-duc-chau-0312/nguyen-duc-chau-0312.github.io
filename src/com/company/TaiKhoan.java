@@ -80,7 +80,7 @@ public class TaiKhoan implements CongViec {
         System.out.print("Mời bạn nhập số tiền cần nạp: ");
         payIn = sc.nextDouble();
         while (true) {
-            if (payIn >= 0) {
+            if (payIn > 0) {
                 tienTk = payIn + tienTk;
                 Locale localeVN = new Locale("vi", "VN");
                 NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
@@ -117,7 +117,7 @@ public class TaiKhoan implements CongViec {
                 System.out.println();
                 break;
             } else {
-                System.out.print("So tien ban muon rut khong hop le\n Mời bạn nhập lại số tiền rút: ");
+                System.out.print("Số tiền bạn muốn rút không hợp lệ\n Mời bạn nhập lại số tiền rút: ");
                 withDraw = sc.nextDouble();
             }
         }
@@ -135,28 +135,28 @@ public class TaiKhoan implements CongViec {
 
     @Override
     public void daoHan() {
-        System.out.print("Nhập số tiền cần vay: ");
+        System.out.print("Nhập số tiền bạn đã vay: ");
         tienVay = sc.nextDouble();
         if (getTienVay() < 100000) {
             tienTk = tienTk - (tienVay + tienVay * RATE1);
             Locale localeVN = new Locale("vi", "VN");
             NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
             String str = currencyVN.format(tienTk);
-            System.out.println(RED + "Số dư hiện tại sau khi nhận lãi xuất 1 tháng của tài khoản " + tenTk + " là " + currencyVN.format(tienTk) + ANSI_RESET);
+            System.out.println(RED + "Số dư hiện tại sau khi đáo hạn nợ  " + tenTk + " là " + currencyVN.format(tienTk) + ANSI_RESET);
             System.out.println();
         } else if (100000 < getTienVay() && getTienVay() < 500000) {
             tienTk = tienTk - (tienVay + tienVay * RATE2);
             Locale localeVN = new Locale("vi", "VN");
             NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
             String str = currencyVN.format(tienTk);
-            System.out.println(RED + "Số dư hiện tại sau khi nhận lãi xuất 1 tháng của tài khoản " + tenTk + " là " + currencyVN.format(tienTk) + ANSI_RESET);
+            System.out.println(RED + "Số dư hiện tại sau khi đáo hạn nợ  " + tenTk + " là " + currencyVN.format(tienTk) + ANSI_RESET);
             System.out.println();
         }else {
             tienTk = tienTk - (tienVay + tienVay * RATE3);
             Locale localeVN = new Locale("vi", "VN");
             NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
             String str = currencyVN.format(tienTk);
-            System.out.println(RED + "Số dư hiện tại sau khi nhận lãi xuất 1 tháng của tài khoản " + tenTk + " là " + currencyVN.format(tienTk) + ANSI_RESET);
+            System.out.println(RED + "Số dư hiện tại sau khi đáo hạn nợ  " + tenTk + " là " + currencyVN.format(tienTk) + ANSI_RESET);
             System.out.println();
         }
     }
